@@ -1,0 +1,122 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNFGkzQ64Lqe4QAiTc+B6r+",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Pragathikc30/ITA0616-MACHINE-LEARNING/blob/main/exp%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 7,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "tWI-ZYUTl0Si",
+        "outputId": "79132bde-11e7-4b87-d114-9248958752a4"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Dataset:\n",
+            "[['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same', 'yes'], ['Sunny', 'Warm', 'High', 'Strong', 'Warm', 'Same', 'yes'], ['Rainy', 'Cold', 'High', 'Strong', 'Warm', 'Change', 'no'], ['Sunny', 'Warm', 'High', 'Strong', 'Cool', 'Change', 'yes']]\n",
+            "\n",
+            "The total number of training instances are: 4\n",
+            "\n",
+            "The initial hypothesis is:\n",
+            "['0', '0', '0', '0', '0', '0']\n",
+            "\n",
+            "The hypothesis for training instance 1 is:\n",
+            "['Sunny', 'Warm', 'Normal', 'Strong', 'Warm', 'Same']\n",
+            "\n",
+            "The hypothesis for training instance 2 is:\n",
+            "['Sunny', 'Warm', '?', 'Strong', 'Warm', 'Same']\n",
+            "\n",
+            "The hypothesis for training instance 3 is:\n",
+            "['Sunny', 'Warm', '?', 'Strong', 'Warm', 'Same']\n",
+            "\n",
+            "The hypothesis for training instance 4 is:\n",
+            "['Sunny', 'Warm', '?', 'Strong', '?', '?']\n",
+            "\n",
+            "The Maximally Specific Hypothesis is:\n",
+            "['Sunny', 'Warm', '?', 'Strong', '?', '?']\n"
+          ]
+        }
+      ],
+      "source": [
+        "import csv\n",
+        "\n",
+        "a = []\n",
+        "\n",
+        "with open(\"enjoysport.csv\", \"r\") as csvfile:\n",
+        "    reader = csv.reader(csvfile)\n",
+        "\n",
+        "    for row in reader:\n",
+        "        a.append(row)\n",
+        "\n",
+        "print(\"Dataset:\")\n",
+        "print(a)\n",
+        "\n",
+        "print(\"\\nThe total number of training instances are:\", len(a))\n",
+        "\n",
+        "num_attribute = len(a[0]) - 1\n",
+        "\n",
+        "print(\"\\nThe initial hypothesis is:\")\n",
+        "\n",
+        "hypothesis = [\"0\"] * num_attribute\n",
+        "\n",
+        "print(hypothesis)\n",
+        "\n",
+        "for i in range(len(a)):\n",
+        "\n",
+        "    if a[i][num_attribute] == \"yes\":\n",
+        "\n",
+        "        for j in range(num_attribute):\n",
+        "\n",
+        "            if hypothesis[j] == \"0\":\n",
+        "                hypothesis[j] = a[i][j]\n",
+        "\n",
+        "            elif hypothesis[j] != a[i][j]:\n",
+        "                hypothesis[j] = \"?\"\n",
+        "\n",
+        "    print(\"\\nThe hypothesis for training instance\", i + 1, \"is:\")\n",
+        "    print(hypothesis)\n",
+        "\n",
+        "print(\"\\nThe Maximally Specific Hypothesis is:\")\n",
+        "print(hypothesis)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "jbMX_ACXl67u"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
